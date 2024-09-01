@@ -11,7 +11,7 @@ on:
 jobs:
   sonarqube-scan:
     uses: bhassan-techtrend/poc-for-jenkins-migration/.github/workflows/sonarqube.yml@main
-    with:
-      sonar_project_key: ${{ secrets.SONAR_PROJECT_KEY }}
-      sonar_host_url: ${{ secrets.SONAR_HOST_URL }}
-      sonar_token: ${{ secrets.SONAR_TOKEN }}
+    secrets:
+      SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
+      SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
