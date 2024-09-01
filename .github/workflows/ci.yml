@@ -1,4 +1,4 @@
-# TEST 5
+# TEST 6
 
 name: CI Pipeline
 
@@ -16,3 +16,4 @@ jobs:
     secrets:
       sonar_host_url: ${{ secrets.SONAR_HOST_URL }}
       sonar_token: ${{ secrets.SONAR_TOKEN }}
+      sonar_project_key: ${{ secrets.SONAR_PROJECT_KEY }}
