@@ -20,7 +20,7 @@ jobs:
       sonar_token: ${{ secrets.SONAR_TOKEN }}
       sonar_project_key: ${{ secrets.SONAR_PROJECT_KEY }}
 
-    sonarqube-scan-dir-two:
+  sonarqube-scan-dir-two:
     uses: bhassan-techtrend/poc-for-jenkins-migration/.github/workflows/sonarqube.yml@main
     with:
       sonar_dir: src/Libraries
