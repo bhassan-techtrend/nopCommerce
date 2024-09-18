@@ -11,10 +11,19 @@ on:
       - develop
 
 jobs:
-  sonarqube-scan:
+  sonarqube-scan-dir-one:
     uses: bhassan-techtrend/poc-for-jenkins-migration/.github/workflows/sonarqube.yml@main
     with:
       sonar_dir: src/Build
+    secrets:
+      sonar_host_url: ${{ secrets.SONAR_HOST_URL }}
+      sonar_token: ${{ secrets.SONAR_TOKEN }}
+      sonar_project_key: ${{ secrets.SONAR_PROJECT_KEY }}
+
+    sonarqube-scan-dir-two:
+    uses: bhassan-techtrend/poc-for-jenkins-migration/.github/workflows/sonarqube.yml@main
+    with:
+      sonar_dir: src/Libraries
     secrets:
       sonar_host_url: ${{ secrets.SONAR_HOST_URL }}
       sonar_token: ${{ secrets.SONAR_TOKEN }}
