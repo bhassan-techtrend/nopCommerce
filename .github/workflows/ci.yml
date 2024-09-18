@@ -13,6 +13,8 @@ on:
 jobs:
   sonarqube-scan:
     uses: bhassan-techtrend/poc-for-jenkins-migration/.github/workflows/sonarqube.yml@main
+    with:
+      projectBaseDir: src/Build
     secrets:
       sonar_host_url: ${{ secrets.SONAR_HOST_URL }}
       sonar_token: ${{ secrets.SONAR_TOKEN }}
