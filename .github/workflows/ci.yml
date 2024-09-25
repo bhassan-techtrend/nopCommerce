@@ -23,7 +23,7 @@ jobs:
         uses: ./.github/submodules/shared-library/.github/workflows/sonarqube.yml
         with:
           sonar_dir: src/Build
-        secrets:
+        env:
           sonar_host_url: ${{ secrets.SONAR_HOST_URL }}
           sonar_token: ${{ secrets.SONAR_TOKEN }}
 
