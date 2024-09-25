@@ -1,6 +1,6 @@
 # TEST 2
 
-name: CI Pipeline
+name: CI Pipeline for sonarqube using submodules
 
 on:
   push:
@@ -11,25 +11,42 @@ on:
       - develop
 
 jobs:
-  sonarqube-scan-dir-one:
-    uses: bhassan-techtrend/poc-for-jenkins-migration/.github/workflows/sonarqube.yml@main
-    with:
-      sonar_dir: src/Build
-    secrets:
-      sonar_host_url: ${{ secrets.SONAR_HOST_URL }}
-      sonar_token: ${{ secrets.SONAR_TOKEN }}
-      sonar_project_key: ${{ secrets.SONAR_PROJECT_KEY }}
+  sonarqube-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repositroy with modules
+        uses: actions/checkout@v4
+        with:
+          submodules: true
 
-  sonarqube-scan-dir-two:
-    uses: bhassan-techtrend/poc-for-jenkins-migration/.github/workflows/sonarqube.yml@main
-    with:
-      sonar_dir: src/Libraries
-    secrets:
-      sonar_host_url: ${{ secrets.SONAR_HOST_URL }}
-      sonar_token: ${{ secrets.SONAR_TOKEN }}
-      sonar_project_key: ${{ secrets.SONAR_PROJECT_KEY }}
+      - name: reuse submodule workflow 
+        uses: ./.github/submodules/shared-library/.github/workflows/sonarqube.yml
+        with:
+          sonar_dir: src/Build
+        secrets:
+          sonar_host_url: ${{ secrets.SONAR_HOST_URL }}
+          sonar_token: ${{ secrets.SONAR_TOKEN }}
 
-  call-owasp-scan:
-    uses: bhassan-techtrend/poc-for-jenkins-migration/.github/workflows/owasp-dependency-check.yml@main  # Calls the reusable workflow
-    with:
-      project_name: "MyProjectName"  # Passes the project name as input
+
+
+
+
+    # uses: bhassan-techtrend/poc-for-jenkins-migration/.github/workflows/sonarqube.yml@main
+    # with:
+    #   sonar_dir: src/Build
+    # secrets:
+    #   sonar_host_url: ${{ secrets.SONAR_HOST_URL }}
+    #   sonar_token: ${{ secrets.SONAR_TOKEN }}
+
+  # sonarqube-scan-dir-two:
+  #   uses: bhassan-techtrend/poc-for-jenkins-migration/.github/workflows/sonarqube.yml@main
+  #   with:
+  #     sonar_dir: src/Libraries
+  #   secrets:
+  #     sonar_host_url: ${{ secrets.SONAR_HOST_URL }}
+  #     sonar_token: ${{ secrets.SONAR_TOKEN }}
+
+  # call-owasp-scan:
+  #   uses: bhassan-techtrend/poc-for-jenkins-migration/.github/workflows/owasp-dependency-check.yml@main  # Calls the reusable workflow
+  #   with:
+  #     project_name: "MyProjectName"  # Passes the project name as input
