@@ -20,9 +20,11 @@ jobs:
           submodules: true
 
       - name: reuse submodule workflow 
-        run: |
-          echo "Running sonarqube and owasp workflows from submodules"
-          bash .github/submodules/shared-library-2/.github/workflows/sonarqube.yml
+        uses: .github/submodules/shared-library-2/.github/workflows/sonarqube.yml
+        with:
+          sonar_dir: src/Build
+          sonar_host_url: ${{ secrets.SONAR_HOST_URL }}
+          sonar_token: ${{ secrets.SONAR_TOKEN }}
         
         # with:
         #   sonar_dir: src/Build
