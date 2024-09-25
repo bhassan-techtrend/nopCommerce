@@ -20,7 +20,7 @@ jobs:
           submodules: true
 
       - name: reuse submodule workflow 
-        uses: ./.github/submodules/shared-library/.github/workflows/sonarqube.yml@main
+        uses: ./.github/submodules/shared-library/.github/workflows/action.yml
         with:
           sonar_dir: src/Build
         env:
