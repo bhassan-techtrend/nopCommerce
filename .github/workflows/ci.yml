@@ -26,7 +26,7 @@ jobs:
 
   sonarqube:
     name: sonarqube analysis
-    uses: ./.github/submodules/shared-library-2/.github/workflows/sonarqube.yml@main
+    uses: ./.github/submodules/shared-library-2/.github/workflows/sonarqube.yml@develop
     with:
       sonar_dir: src/Build
       sonar_host_url: ${{ secrets.SONAR_HOST_URL }}
