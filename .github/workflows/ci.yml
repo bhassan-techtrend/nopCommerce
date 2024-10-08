@@ -21,7 +21,8 @@ jobs:
 
       - name: Verify submodule
         run: |
-          ls -al .github/submodules/shared-library-2/
+          ls -al ./.github/submodules/shared-library-2/.github/workflows/
+          cat ./.github/submodules/shared-library-2/.github/workflows/sonarqube.yml
 
       - name: reuse submodule workflow 
         uses: ./.github/submodules/shared-library-2/.github/workflows/sonarqube.yml
